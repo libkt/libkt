@@ -1,0 +1,90 @@
+buildscript {
+    ext{
+        versionLibkt = 'R0.1-SNAPSHOT'
+        versionKotlin = '1.1.3'
+        versionBukkit = '1.12-R0.1-SNAPSHOT'
+    }
+
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versionKotlin"
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:0.9.15"
+    }
+}
+
+plugins {
+    id "com.github.johnrengelman.shadow" version "2.0.1"
+}
+
+apply plugin: 'kotlin'
+apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'maven'
+apply plugin: 'org.jetbrains.dokka'
+
+install.dependsOn shadowJar
+assemble.dependsOn shadowJar
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://hub.spigotmc.org/nexus/content/repositories/snapshots/"
+    }
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$versionKotlin"
+    compileOnly "org.bukkit:bukkit:$versionBukkit"
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.6"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.6"
+}
+
+shadowJar {
+    baseName = project.name
+    classifier = null
+    dependencies {
+        exclude(dependency("org.jetbrains:annotations:.*"))
+    }
+}
+
+dokka {
+    outputFormat = 'javadoc'
+    outputDirectory = "$buildDir/javadoc"
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar) {
+    classifier 'javadoc'
+    from dokka
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+
+group 'com.github.libkt'
+version "$versionKotlin-$versionLibkt"
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "http://repo.onarandombox.com/content/repositories/thirdparty/")
+            snapshotRepository(url: "http://repo.onarandombox.com/content/repositories/thirdparty-dev/")
+        }
+    }
+}
