@@ -1,0 +1,4 @@
+name: libkt
+main: com.github.libkt.LibKt
+version: @versionPlugin@
+author: dumptruckman
