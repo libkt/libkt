@@ -32,6 +32,7 @@ apply plugin: 'maven'
 apply plugin: 'org.jetbrains.dokka'
 
 install.dependsOn shadowJar
+uploadArchives.dependsOn shadowJar
 assemble.dependsOn shadowJar
 
 sourceCompatibility = 1.6
