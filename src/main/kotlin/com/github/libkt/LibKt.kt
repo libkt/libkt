@@ -18,9 +18,25 @@
  */
 package com.github.libkt
 
+import org.bstats.Metrics
 import org.bukkit.plugin.java.JavaPlugin
 
 /**
  * The main plugin class for libkt. Not very exciting right now.
  */
-class LibKt : JavaPlugin()
+class LibKt : JavaPlugin() {
+
+    override fun onEnable() {
+        setupMetrics()
+
+    }
+
+    private fun setupMetrics() {
+        val metrics = Metrics(this)
+
+        metrics.addCustomChart(object : Metrics.SimplePie("kotlin_version") {
+            private val kotlinVersion = description.version.split("-")[0]
+            override fun getValue() = kotlinVersion
+        })
+    }
+}

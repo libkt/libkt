@@ -46,10 +46,14 @@ repositories {
     maven {
         url "https://hub.spigotmc.org/nexus/content/repositories/snapshots/"
     }
+    maven {
+        url "http://repo.bstats.org/content/repositories/releases/"
+    }
 }
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$versionKotlin"
+    compile "org.bstats:bstats-bukkit:1.1"
     compileOnly "org.bukkit:bukkit:$versionBukkit"
 }
 
@@ -70,6 +74,7 @@ shadowJar {
     dependencies {
         exclude(dependency("org.jetbrains:annotations:.*"))
     }
+    relocate 'org.bstats', 'bstats.libkt'
 }
 
 dokka {
