@@ -97,8 +97,12 @@ processResources {
 uploadArchives {
     repositories {
         mavenDeployer {
-            repository(url: "http://repo.onarandombox.com/content/repositories/thirdparty/")
-            snapshotRepository(url: "http://repo.onarandombox.com/content/repositories/thirdparty-dev/")
+            repository(url: "http://repo.onarandombox.com/content/repositories/thirdparty/") {
+                authentication(userName: mavenUser, password: mavenPassword)
+            }
+            snapshotRepository(url: "http://repo.onarandombox.com/content/repositories/thirdparty-dev/") {
+                authentication(userName: mavenUser, password: mavenPassword)
+            }
         }
     }
 }
