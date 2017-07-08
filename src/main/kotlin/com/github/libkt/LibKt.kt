@@ -17,6 +17,7 @@ class LibKt : JavaPlugin() {
         try {
             description.version.split("-").last().substring(1).toInt()
         } catch(e: Exception) {
+            logger.warning("libkt build number could not be detected - dependent plugins may not function correctly!")
             0
         }
     }
