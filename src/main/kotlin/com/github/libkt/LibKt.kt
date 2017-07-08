@@ -26,6 +26,19 @@ import org.bukkit.plugin.java.JavaPlugin
  */
 class LibKt : JavaPlugin() {
 
+    /**
+     * Returns the build number of the libkt plugin
+     *
+     * @since b1
+     */
+    val buildNumber: Int by lazy {
+        try {
+            description.version.split("-").last().substring(1).toInt()
+        } catch(e: Exception) {
+            0
+        }
+    }
+
     override fun onEnable() {
         setupMetrics()
 
