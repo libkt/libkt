@@ -2,6 +2,7 @@ package com.github.libkt.extensions
 
 import org.bukkit.Bukkit
 import org.bukkit.OfflinePlayer
+import org.bukkit.entity.Entity
 import org.bukkit.entity.Player
 import java.util.UUID
 
@@ -25,3 +26,12 @@ fun UUID.getPlayer(): Player? {
 fun UUID.getOfflinePlayer(): OfflinePlayer {
     return Bukkit.getOfflinePlayer(this);
 }
+
+/**
+ * Gets an entity on the server by this UUID
+ *
+ * @return the entity with this UUID, or null if it isn't found
+ * @since b1
+ */
+val UUID.entity: Entity?
+    get() = Bukkit.getEntity(this)
