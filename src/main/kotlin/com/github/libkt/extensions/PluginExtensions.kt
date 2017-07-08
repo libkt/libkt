@@ -6,6 +6,8 @@ import org.bukkit.plugin.Plugin
 
 /**
  * Registers all of [EventHandler]s in the given listener for this plugin.
+ *
+ * @since b1
  */
 fun Plugin.registerEvents(listener: Listener) {
     server.pluginManager.registerEvents(listener, this)

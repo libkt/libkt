@@ -10,6 +10,7 @@ import java.util.UUID
  *
  * @return a UUID from this string representation or null if this string does not conform to the string representation
  * as described in [UUID.toString].
+ * @since b1
  */
 fun CharSequence.toUUID(): UUID? {
     try {
@@ -25,6 +26,7 @@ fun CharSequence.toUUID(): UUID? {
  * It is typically better to get players by using their UUID instead since names can change between login sessions.
  *
  * @return the player with this name if found online, null otherwise.
+ * @since b1
  */
 fun CharSequence.getPlayer(): Player? {
     return Bukkit.getPlayer(this.toString())
@@ -36,6 +38,8 @@ fun CharSequence.getPlayer(): Player? {
  * This method may involve a blocking web request to get the UUID for the this name.
  *
  * This will return an object even if the player does not exist. To this method, all players will exist.
+ *
+ * @since b1
  */
 @Deprecated("Persistent storage of users should be by UUID as names are no longer unique past a single session.",
         ReplaceWith("Bukkit.getOfflinePlayer(UUID)"), DeprecationLevel.WARNING)
