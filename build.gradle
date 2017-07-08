@@ -33,7 +33,6 @@ apply plugin: 'maven'
 apply plugin: 'org.jetbrains.dokka'
 apply plugin: 'net.minecrell.licenser'
 
-shadowJar.dependsOn updateLicenses
 install.dependsOn shadowJar
 uploadArchives.dependsOn shadowJar
 assemble.dependsOn shadowJar
@@ -114,6 +113,7 @@ license {
 }
 
 if (project.hasProperty('mavenUser') && project.hasProperty('mavenPassword')) {
+    shadowJar.dependsOn updateLicenses
     uploadArchives {
         repositories {
             mavenDeployer {
