@@ -4,7 +4,7 @@ import org.bstats.Metrics
 import org.bukkit.plugin.java.JavaPlugin
 
 /**
- * The main plugin class for libkt. Not very exciting right now.
+ * The main plugin class for libkt.
  */
 class LibKt : JavaPlugin() {
 
@@ -23,7 +23,6 @@ class LibKt : JavaPlugin() {
 
     override fun onEnable() {
         setupMetrics()
-
     }
 
     private fun setupMetrics() {
