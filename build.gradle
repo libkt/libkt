@@ -113,7 +113,7 @@ license {
 }
 
 if (project.hasProperty('mavenUser') && project.hasProperty('mavenPassword')) {
-    shadowJar.dependsOn updateLicenses
+    shadowJar.dependsOn checkLicenses
     uploadArchives {
         repositories {
             mavenDeployer {
