@@ -37,21 +37,22 @@ import org.bukkit.plugin.java.JavaPlugin
 class LibKt : JavaPlugin(), Listener {
 
     /**
-     * Returns the build number of the libkt plugin
+     * Returns the version number of the libkt plugin which can be used to gauge which features are available in this
+     * plugin.
      *
-     * @since b1
+     * @since v1
      */
-    val buildNumber: Int by lazy {
+    val versionNumber: Int by lazy {
         try {
-            description.version.split("-").last().substring(1).toInt()
+            description.version.toInt()
         } catch(e: Exception) {
-            logger.warning("libkt build number could not be detected - dependent plugins may not function correctly!")
+            logger.warning("libkt version number is invalid - dependent plugins may not function correctly!")
             0
         }
     }
 
     override fun onEnable() {
-        if (buildNumber > 0) {
+        if (versionNumber > 0) {
             registerEvents(this)
         }
         setupMetrics()
@@ -70,9 +71,9 @@ class LibKt : JavaPlugin(), Listener {
     fun pluginEnable(event: PluginEnableEvent) {
         val plugin = event.plugin
         if (plugin is KPlugin) {
-            if (buildNumber < plugin.requiredLibktBuild) {
-                logger.severe("$plugin is being disabled as it requires b${plugin.requiredLibktBuild} or greater of" +
-                        " libkt (found b$buildNumber)")
+            if (versionNumber < plugin.requiredLibktVersion) {
+                logger.severe("$plugin is being disabled as it requires v${plugin.requiredLibktVersion} or greater of" +
+                        " libkt (found v$versionNumber)")
                 plugin.setEnabled(false)
             }
         }
