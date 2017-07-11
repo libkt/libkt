@@ -26,10 +26,12 @@ package com.github.libkt
 import com.github.libkt.extensions.plugin.registerEvents
 import com.github.libkt.extensions.plugin.setEnabled
 import org.bstats.Metrics
+import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.server.PluginEnableEvent
 import org.bukkit.plugin.java.JavaPlugin
+import java.io.InputStreamReader
 
 /**
  * The main plugin class for libkt.
@@ -56,11 +58,15 @@ class LibKt : JavaPlugin(), Listener {
      * @since v1
      */
     val kotlinVersion: String by lazy {
+        val unknownKotlinVersion = "UNKNOWN"
         try {
-            description.name.split(delimiters = "-", limit = 2)[1]
+            val pluginDescriptor = YamlConfiguration.loadConfiguration(InputStreamReader(
+                    this::class.java.getResourceAsStream("/plugin.yml")))
+            val kotlinVersion = pluginDescriptor.getString("kotlinVersion", unknownKotlinVersion)
+            if (kotlinVersion.isBlank()) unknownKotlinVersion else kotlinVersion
         } catch(e: Exception) {
-            logger.warning("")
-            "UNKNOWN"
+            logger.warning("Could not detect Kotlin version provided.")
+            unknownKotlinVersion
         }
     }
 

@@ -99,7 +99,8 @@ version "$versionPlugin"
 processResources {
     filter ReplaceTokens, tokens: [
             "versionPlugin": project.property("versionPlugin"),
-            "versionKotlinMajor": project.property("versionKotlinMajor")
+            "versionKotlinMajor": project.property("versionKotlinMajor"),
+            "versionKotlin": project.property("versionKotlin").toString()
     ]
 }
 
