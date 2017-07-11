@@ -126,11 +126,11 @@ if (project.hasProperty('mavenUser') && project.hasProperty('mavenPassword')) {
 
     def deployer = uploadArchives.repositories.mavenDeployer
     [installer, deployer]*.pom*.whenConfigured {pom ->
-        pom.dependencies.find {dep -> dep.groupId == 'org.bstats'}.scope = 'provided'
+        pom.dependencies.removeAll { it.groupId == 'org.bstats' }
     }
 } else {
     [installer]*.pom*.whenConfigured {pom ->
-        pom.dependencies.find {dep -> dep.groupId == 'org.bstats'}.scope = 'provided'
+        pom.dependencies.removeAll { it.groupId == 'org.bstats' }
     }
 }
 
