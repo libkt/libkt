@@ -37,8 +37,7 @@ import org.bukkit.plugin.java.JavaPlugin
 class LibKt : JavaPlugin(), Listener {
 
     /**
-     * Returns the version number of the libkt plugin which can be used to gauge which features are available in this
-     * plugin.
+     * The version number of the libkt plugin which can be used to gauge which features are available in this plugin.
      *
      * @since v1
      */
@@ -51,10 +50,25 @@ class LibKt : JavaPlugin(), Listener {
         }
     }
 
+    /**
+     * The version of Kotlin provided by this copy of libkt.
+     *
+     * @since v1
+     */
+    val kotlinVersion: String by lazy {
+        try {
+            description.name.split(delimiters = "-", limit = 2)[1]
+        } catch(e: Exception) {
+            logger.warning("")
+            "UNKNOWN"
+        }
+    }
+
     override fun onEnable() {
         if (versionNumber > 0) {
             registerEvents(this)
         }
+        logger.info("Providing version $kotlinVersion of Kotlin.");
         setupMetrics()
     }
 
