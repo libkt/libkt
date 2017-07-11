@@ -46,7 +46,9 @@ repositories {
 }
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$versionKotlin"
+    compile ("org.jetbrains.kotlin:kotlin-stdlib-jre7:$versionKotlin") {
+        exclude group: 'org.jetbrains', module: 'annotations'
+    }
     compile "org.bstats:bstats-bukkit:1.1"
     compileOnly "org.bukkit:bukkit:$versionBukkit"
 }
@@ -65,9 +67,6 @@ shadowJar {
     }
     baseName = project.name
     classifier = null
-    dependencies {
-        exclude(dependency("org.jetbrains:annotations:.*"))
-    }
     relocate 'org.bstats', 'bstats.libkt'
 }
 
