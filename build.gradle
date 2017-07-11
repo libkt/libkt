@@ -47,8 +47,8 @@ repositories {
 }
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$versionKotlin"
-    compile "org.bstats:bstats-bukkit:1.1"
+    shadow "org.jetbrains.kotlin:kotlin-stdlib-jre7:$versionKotlin"
+    shadow "org.bstats:bstats-bukkit:1.1"
     compileOnly "org.bukkit:bukkit:$versionBukkit"
 }
 
