@@ -47,8 +47,8 @@ repositories {
 }
 
 dependencies {
-    shadow "org.jetbrains.kotlin:kotlin-stdlib-jre7:$versionKotlin"
-    shadow "org.bstats:bstats-bukkit:1.1"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$versionKotlin"
+    compile "org.bstats:bstats-bukkit:1.1"
     compileOnly "org.bukkit:bukkit:$versionBukkit"
 }
 
@@ -111,6 +111,7 @@ license {
     newLine false
 }
 
+def installer = install.repositories.mavenInstaller
 if (project.hasProperty('mavenUser') && project.hasProperty('mavenPassword')) {
     shadowJar.dependsOn checkLicenses
     uploadArchives {
@@ -125,4 +126,14 @@ if (project.hasProperty('mavenUser') && project.hasProperty('mavenPassword')) {
             }
         }
     }
+
+    def deployer = uploadArchives.repositories.mavenDeployer
+    [installer, deployer]*.pom*.whenConfigured {pom ->
+        pom.dependencies.find {dep -> dep.groupId == 'org.bstats'}.scope = 'provided'
+    }
+} else {
+    [installer]*.pom*.whenConfigured {pom ->
+        pom.dependencies.find {dep -> dep.groupId == 'org.bstats'}.scope = 'provided'
+    }
 }
+
