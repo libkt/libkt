@@ -3,7 +3,7 @@ import org.apache.tools.ant.filters.*
 buildscript {
     ext{
         versionPlugin = '1' // Increment this after every successful build on http://ci.onarandombox.com
-        versionKotlin = '1.1.3'
+        versionKotlin = '1.1.3-2'
         versionBukkit = '1.12-R0.1-SNAPSHOT'
     }
 
