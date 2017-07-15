@@ -1,0 +1,6 @@
+name: PluginName
+main: some.namespace.YourPlugin
+version: @plugin_version@
+author: yourname
+# The format of the libkt name is very important - do not change
+depend: [libkt-@libkt_kotlin_version@]
