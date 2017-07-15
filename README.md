@@ -10,8 +10,8 @@ Kotlin major.minor version number to the plugin name. This way, a plugin can dep
 libkt for a specific version of Kotlin.
 
 ## How to use libkt
-It is strongly recommended to check out the skeleton projects as they are set up to be as
-automated as possible with regards to the hackery that libkt does.
+It is strongly recommended that you check out the skeleton projects as they are set up to
+be as automated as possible with regards to the hackery that libkt does.
 
 [**Gradle Skeleton**](src/examples/gradle)
 
