@@ -33,7 +33,7 @@ You will need to relocate (via shade or shadow plugins) the Kotlin stdlib packag
 have to do this even though you are not including the stdlib in your plugin. This because
 the Kotlin compiler automatically includes some imports in your code and the namespaces
 for those imports need to match what libkt provides. libkt sets up the Kotlin packages
-similar to how CraftBukkit does it. Example: `kotlin_v1_1`
+similar to how CraftBukkit does it for the MC version. Example: `kotlin_v1_1`
 
 #### Dependency Information
 ```
