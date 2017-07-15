@@ -108,8 +108,8 @@
                         <configuration>
                             <relocations>
                                 <relocation>
-                                    <pattern>kotlin</pattern>
-                                    <shadedPattern>kotlin.v${kotlin.major.version}_${kotlin.minor.version}</shadedPattern>
+                                    <pattern>kotlin.</pattern>
+                                    <shadedPattern>kotlin_v${kotlin.major.version}_${kotlin.minor.version}.</shadedPattern>
                                 </relocation>
                             </relocations>
                         </configuration>

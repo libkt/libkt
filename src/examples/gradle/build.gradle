@@ -42,7 +42,7 @@ shadowJar {
     classifier = null
 
     // This part is very important - do not change
-    relocate 'kotlin', "koltin.v${libkt_version.split("-")[0].replace('.', '_')}"
+    relocate 'kotlin.', "koltin_v${libkt_version.split("-")[0].replace('.', '_')}."
 }
 
 compileKotlin {

@@ -68,7 +68,7 @@ shadowJar {
     baseName = project.name
     classifier = null
     relocate 'org.bstats', 'bstats.libkt'
-    relocate 'kotlin', "kotlin.v${versionKotlinMajor.replace(".", "_")}"
+    relocate 'kotlin.', "kotlin_v${versionKotlinMajor.replace(".", "_")}."
 }
 
 dokka {
