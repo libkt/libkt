@@ -39,15 +39,15 @@ import java.io.InputStreamReader
 class LibKt : JavaPlugin(), Listener {
 
     /**
-     * The version number of the libkt plugin which can be used to gauge which features are available in this plugin.
+     * The build number of the libkt plugin which can be used to gauge which features are available in this plugin.
      *
-     * @since v1
+     * @since b1
      */
-    val versionNumber: Int by lazy {
+    val buildNumber: Int by lazy {
         try {
             description.version.toInt()
         } catch(e: Exception) {
-            logger.warning("libkt version number is invalid - dependent plugins may not function correctly!")
+            logger.warning("libkt build number is invalid - dependent plugins may not function correctly!")
             0
         }
     }
@@ -55,7 +55,7 @@ class LibKt : JavaPlugin(), Listener {
     /**
      * The version of Kotlin provided by this copy of libkt.
      *
-     * @since v1
+     * @since b1
      */
     val kotlinVersion: String by lazy {
         val unknownKotlinVersion = "UNKNOWN"
@@ -71,7 +71,7 @@ class LibKt : JavaPlugin(), Listener {
     }
 
     override fun onEnable() {
-        if (versionNumber > 0) {
+        if (buildNumber > 0) {
             registerEvents(this)
         }
         logger.info("Providing version $kotlinVersion of Kotlin.");
@@ -91,9 +91,9 @@ class LibKt : JavaPlugin(), Listener {
     fun pluginEnable(event: PluginEnableEvent) {
         val plugin = event.plugin
         if (plugin is KPlugin) {
-            if (versionNumber < plugin.requiredLibktVersion) {
-                logger.severe("$plugin is being disabled as it requires v${plugin.requiredLibktVersion} or greater of" +
-                        " libkt (found v$versionNumber)")
+            if (buildNumber < plugin.requiredLibktBuild) {
+                logger.severe("$plugin is being disabled as it requires b${plugin.requiredLibktBuild} or greater of" +
+                        " libkt (found b$buildNumber)")
                 plugin.setEnabled(false)
             }
         }

@@ -1,6 +1,6 @@
-name: libkt
+name: libkt-@versionKotlinMajor@
 main: com.github.libkt.LibKt
-version: @versionPlugin@
+version: @buildNumber@
 author: dumptruckman
 load: STARTUP
 kotlinVersion: @versionKotlin@
