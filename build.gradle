@@ -28,9 +28,7 @@ apply plugin: 'maven'
 apply plugin: 'org.jetbrains.dokka'
 apply plugin: 'net.minecrell.licenser'
 
-install.dependsOn shadowJar
-uploadArchives.dependsOn shadowJar
-assemble.dependsOn shadowJar
+jar.finalizedBy shadowJar
 
 sourceCompatibility = 1.6
 targetCompatibility = 1.6
