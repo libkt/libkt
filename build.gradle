@@ -6,7 +6,7 @@ buildscript {
         versionKotlinMajor = '1.1'
         versionKotlin = "$versionKotlinMajor.3-2"
         versionBukkit = '1.12-R0.1-SNAPSHOT'
-        versionPlugin = "$versionKotlinMajor-b$buildNumber"
+        versionPlugin = "$buildNumber-$versionKotlinMajor"
     }
 
     repositories {
@@ -68,7 +68,6 @@ shadowJar {
     baseName = project.name
     classifier = null
     relocate 'org.bstats', 'bstats.libkt'
-    relocate 'kotlin.', "kotlin_v${versionKotlinMajor.replace(".", "_")}."
 }
 
 dokka {

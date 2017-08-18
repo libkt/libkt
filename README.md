@@ -1,44 +1,28 @@
 # libkt
-libkt is a simple Bukkit plugin whose main purpose is to make sure the version of Kotlin
-you need is on the classpath. However, to avoid conflicts with other plugins that might
-be doing the same thing, libkt takes some extra precautions. In addition, it will try to
-provide some thoughtful extras to help Bukkit feel a little more Kotlin friendly.
-
-Through a little bit of hackery with Bukkit's plugin system libkt is able to provide
-multiple versions of the Kotlin standard library at once. This works by appending the
-Kotlin major.minor version number to the plugin name. This way, a plugin can depend on
-libkt for a specific version of Kotlin.
+libkt is a simple Bukkit plugin whose main purpose is to make sure Kotlin and several other
+common libraries are on the classpath for other plugins to use. It also provides an API for
+allowing plugins to be automatically disabled if a recent enough version of libkt isn't
+installed.
 
 ## How to use libkt
-It is strongly recommended that you check out the skeleton projects as they are set up to
-be as automated as possible with regards to the hackery that libkt does.
+Simply add `depend: [libkt]` to your `plugin.yml`.
 
-[**Gradle Skeleton**](src/examples/gradle)
+If you would like to libkt to automatically disable your plugin when the libkt build is not
+recent enough simply implement [`KPlugin`](src/main/kotlin/com/github/libkt/KPlugin.kt) like
+so:
 
-[**Maven Skeleton**](src/examples/maven)
+```kotlin
+class MyPlugin : JavaPlugin(), KPlugin {
 
-Be aware that both of the build systems are set up to add information to a specially 
-formatted [`plugin.yml`](src/examples/gradle/src/main/resources/plugin.yml) so don't forget
-to include that!
+    override val requiredLibktBuild = 1
 
-### Doing it yourself
-There are two main considerations when creating your build with libkt yourself.
+}
+```
 
-##### plugin.yml
-The libkt plugin name is based on the version of Kotlin that it includes. You must include
-that in your depend value. Example: `depend: [libkt-1.1]`
-
-##### Kotlin package relocation
-You will need to relocate (via shade or shadow plugins) the Kotlin stdlib packages. You
-have to do this even though you are not including the stdlib in your plugin. This because
-the Kotlin compiler automatically includes some imports in your code and the namespaces
-for those imports need to match what libkt provides. libkt sets up the Kotlin packages
-similar to how CraftBukkit does it for the MC version. Example: `kotlin_v1_1`
-
-#### Dependency Information
+## Dependency Information
 ```
 maven repo url: http://repo.onarandombox.com/content/groups/public/
 groupId: com.github.libkt
 artifactId: libkt
-version: 1.1-b1
+version: 1-1.1
 ```

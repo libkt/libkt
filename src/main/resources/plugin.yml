@@ -1,4 +1,4 @@
-name: libkt-@versionKotlinMajor@
+name: libkt
 main: com.github.libkt.LibKt
 version: @buildNumber@
 author: dumptruckman
