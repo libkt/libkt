@@ -61,10 +61,6 @@ compileTestKotlin {
 }
 
 shadowJar {
-    from "${projectDir}/LICENSE.txt"
-    from ("${projectDir}/KOTLIN-LICENSE.txt") {
-        into ("kotlin")
-    }
     baseName = project.name
     classifier = null
     relocate 'org.bstats', 'bstats.libkt'
