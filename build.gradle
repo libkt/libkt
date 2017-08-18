@@ -4,7 +4,7 @@ buildscript {
     ext{
         buildNumber = '1' // Increment this after every successful build on http://ci.onarandombox.com
         versionKotlinMajor = '1.1'
-        versionKotlin = "$versionKotlinMajor.3-2"
+        versionKotlin = "$versionKotlinMajor.4"
         versionBukkit = '1.12-R0.1-SNAPSHOT'
         versionPlugin = "$buildNumber-$versionKotlinMajor"
     }
