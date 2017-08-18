@@ -5,7 +5,6 @@ buildscript {
         buildNumber = '1' // Increment this after every successful build on http://ci.onarandombox.com
         versionKotlinMajor = '1.1'
         versionKotlin = "$versionKotlinMajor.4"
-        versionBukkit = '1.12-R0.1-SNAPSHOT'
         versionPlugin = "$buildNumber-$versionKotlinMajor"
     }
 
@@ -70,7 +69,7 @@ dependencies {
     compile "com.okkero.skedule:skedule:1.2.2"
     compile "org.bstats:bstats-bukkit:1.1"
 
-    compileOnly "org.bukkit:bukkit:$versionBukkit"
+    compileOnly "org.bukkit:bukkit:1.12.1-R0.1-SNAPSHOT"
 }
 
 compileKotlin {
