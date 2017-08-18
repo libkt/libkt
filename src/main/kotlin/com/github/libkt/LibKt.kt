@@ -23,8 +23,6 @@
  */
 package com.github.libkt
 
-import com.github.libkt.extensions.plugin.registerEvents
-import com.github.libkt.extensions.plugin.setEnabled
 import org.bstats.Metrics
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.event.EventHandler
@@ -72,7 +70,7 @@ class LibKt : JavaPlugin(), Listener {
 
     override fun onEnable() {
         if (buildNumber > 0) {
-            registerEvents(this)
+            server.pluginManager.registerEvents(this, this)
         }
         logger.info("Providing version $kotlinVersion of Kotlin.");
         setupMetrics()
@@ -94,7 +92,7 @@ class LibKt : JavaPlugin(), Listener {
             if (buildNumber < plugin.requiredLibktBuild) {
                 logger.severe("$plugin is being disabled as it requires b${plugin.requiredLibktBuild} or greater of" +
                         " libkt (found b$buildNumber)")
-                plugin.setEnabled(false)
+                server.pluginManager.disablePlugin(plugin)
             }
         }
     }
