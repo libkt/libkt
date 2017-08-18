@@ -32,8 +32,8 @@ apply plugin: 'net.minecrell.licenser'
 
 jar.finalizedBy shadowJar
 
-sourceCompatibility = 1.6
-targetCompatibility = 1.6
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
     mavenCentral()
@@ -46,7 +46,7 @@ repositories {
 }
 
 dependencies {
-    compile ("org.jetbrains.kotlin:kotlin-stdlib-jre7:$versionKotlin") {
+    compile ("org.jetbrains.kotlin:kotlin-stdlib-jre8:$versionKotlin") {
         exclude group: 'org.jetbrains', module: 'annotations'
     }
     compile "org.bstats:bstats-bukkit:1.1"
@@ -54,10 +54,10 @@ dependencies {
 }
 
 compileKotlin {
-    kotlinOptions.jvmTarget = "1.6"
+    kotlinOptions.jvmTarget = "1.8"
 }
 compileTestKotlin {
-    kotlinOptions.jvmTarget = "1.6"
+    kotlinOptions.jvmTarget = "1.8"
 }
 
 shadowJar {
